@@ -3,6 +3,9 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname + '/'));
+
 var dot = require('dot-object')
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
 var client =  require('mqtt').connect('mqtt://wirelesstech.online:1883', {
