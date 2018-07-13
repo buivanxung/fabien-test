@@ -31,8 +31,12 @@
             reconnectionDelayMax : 5000,
             reconnectionAttempts: 99999
           });
-  				socket.on('reciver_data', function (data) {
-            $('#data').prepend('<li> <strong> Data: </strong>' + data + "<strong>  Time: </strong>" + new Date() + '</li>');
+  				socket.on('sending_json_data', function (data) {
+            $('#data').prepend("<li> <strong> Raw: </strong>" + data + "<strong>" + "</li>");
+            database = data;
+  				});
+          socket.on('sending_payload', function (data) {
+            $('#data').prepend("<li> <strong> Data to Base64: </strong>" + data + "<strong>" + "</li>");
             database = data;
   				});
           setInterval(function () {
