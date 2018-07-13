@@ -22,6 +22,10 @@ function getdata( a, data) {
      return dot.pick( a,data);
 };
 
+app.get('/', function(req, res){
+  res.render('index');
+});
+
 io.on('connection', function (socket) {
   console.log("New connection");
     client.on('connect', function () {
