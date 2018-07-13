@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title> Technology</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style media="screen">
+      li {
+        padding: 7px;
+        margin-left: 10px;
+        border: 0.5px solid #e6f2ff;
+      }
+    </style>
+    <script src="js/modernizr-3.5.0.min.js"></script>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    var database = null;
+      var socket;
+        {
+          socket = io.connect('http://wirelesstech.online:5050',{
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionDelayMax : 5000,
+            reconnectionAttempts: 99999
+          });
+  				socket.on('reciver_data', function (data) {
+            $('#data').prepend('<li> <strong> Data: </strong>' + data + "<strong>  Time: </strong>" + new Date() + '</li>');
+            database = data;
+  				});
+          setInterval(function () {
+            if (database == null) {
+              $('#data').html("Waitting data ... ");
+            }
+          }, 100);
+      }
+    </script>
+</head>
+<body style="align:center; width:100%; height: 100%; ">
+  <div >
+    <table>
+        <th>
+          <div class=" text-center">
+              <h1> <font color="#00254d">Real-Time Data Demo </font></h1>
+          </div>
+        </th>
+    </table>
+</div>
+<div >
+    <ol id="data" style="font-family: 'Courier New', Courier, monospace;"></ol>
+</div>
+
+</body>
+</html>
