@@ -15,7 +15,7 @@ var client =  require('mqtt').connect('mqtt://wirelesstech.online:1883', {
   protocolVersion: 4,
   reconnectPeriod: 1000,
   connectTimeout: 30 * 1000,
-  username: 'xung',
+  username: 'root',
   password: '1234567',
   rejectUnauthorized: false
 });
@@ -39,7 +39,7 @@ io.on('connection', function (socket) {
          console.log(err)
          client.end()
     });
-    client.subscribe('application/+/device/+/rx', { qos: 0 })
+    client.subscribe('#', { qos: 0 })
     client.on('message', function (topic, message) {
          try {
          var parse_data = JSON.parse(message);
@@ -48,15 +48,15 @@ io.on('connection', function (socket) {
          catch(e) {
           return console.error(e);
          }
-         var codeRate = getdata('txInfo.codeRate', parse_data);
-         var phyPayload1 = getdata('data', parse_data);
-         if(codeRate != null) {
-               var raw_data = phyPayload1.toString();
-               var buf = new Buffer(phyPayload1,'base64');
-               var phyPayload2 = buf.toString();
-               socket.emit('sending_payload', phyPayload2);
-               }
-             });
+         // var codeRate = getdata('txInfo.codeRate', parse_data);
+         // var phyPayload1 = getdata('data', parse_data);
+         // if(codeRate != null) {
+         //       var raw_data = phyPayload1.toString();
+         //       var buf = new Buffer(phyPayload1,'base64');
+         //       var phyPayload2 = buf.toString();
+         //       socket.emit('sending_payload', phyPayload2);
+         //       }
+         //     });
 
     client.on('close', function () {
          console.log(clientId + ' disconnected')
