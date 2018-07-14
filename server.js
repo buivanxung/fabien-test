@@ -43,15 +43,11 @@ io.on('connection', function (socket) {
     client.on('message', function (topic, message) {
          try {
          var parse_data = JSON.parse(message);
-         socket.emit('sending_json_data', message);
+         socket.emit('sending_json_data', parse_data);
          }
          catch(e) {
           return console.error(e);
          }
-
-         var appName = getdata('applicationName', parse_data);
-         var deviceName = getdata('deviceName', parse_data);
-         var devEUI = getdata('devEUI', parse_data);
          var codeRate = getdata('txInfo.codeRate', parse_data);
          var phyPayload1 = getdata('data', parse_data);
          if(codeRate != null) {
