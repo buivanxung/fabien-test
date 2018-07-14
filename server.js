@@ -41,8 +41,10 @@ io.on('connection', function (socket) {
     });
     client.subscribe('#', { qos: 0 })
     client.on('message', function (topic, message) {
+      console.log("daasd");
          try {
-         var parse_data = JSON.parse(message);
+         var parse_data = JSON.stringify(message);
+         console.log(parse_data);
          socket.emit('sending_json_data', parse_data);
          }
          catch(e) {
