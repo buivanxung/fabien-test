@@ -56,7 +56,7 @@ io.on('connection', function (socket) {
          //       var phyPayload2 = buf.toString();
          //       socket.emit('sending_payload', phyPayload2);
          //       }
-         //     });
+             });
 
     client.on('close', function () {
          console.log(clientId + ' disconnected')
