@@ -42,7 +42,8 @@ io.on('connection', function (socket) {
     client.subscribe('#', { qos: 0 })
     client.on('message', function (topic, message) {
          try {
-         var parse_data = JSON.stringify(message);
+         var parse_data = JSON.parse(message);
+         parse_data = JSON.stringify(parse_data);
          socket.emit('sending_json_data', parse_data);
          }
          catch(e) {
