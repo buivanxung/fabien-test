@@ -8,15 +8,15 @@ app.use(express.static(__dirname + '/'));
 
 var dot = require('dot-object')
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
-var client =  require('mqtt').connect('mqtt://wirelesstech.online:1883', {
+var client =  require('mqtt').connect('mqtt://wirelesstech.online:xxxx', {
   keepalive: 10,
   clientId: clientId,
   protocolId: 'MQTT',
   protocolVersion: 4,
   reconnectPeriod: 1000,
   connectTimeout: 30 * 1000,
-  username: 'root',
-  password: '1234567',
+  username: 'xxxx',
+  password: 'xxxxxxx',
   rejectUnauthorized: false
 });
 
